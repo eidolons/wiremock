@@ -3,15 +3,22 @@ FROM eidolons/openjdk:8.0.265
 
 # Container environment variables
 ENV WIREMOCK_HOME="/opt/wiremock" \
-    WIREMOCK_VERSION="2.27.0" \
-    WIREMOCK_OPTS="--root-dir \"${WIREMOCK_HOME}/data\""
+    WIREMOCK_SECURED="false" \
+    WIREMOCK_CASTORE="application.castore" \
+    WIREMOCK_CASTORE_PASSWORD="password" \
+    WIREMOCK_KEYSTORE="application.keystore" \
+    WIREMOCK_KEYSTORE_PASSWORD="password" \
+    WIREMOCK_TRUSTSTORE="application.truststore" \
+    WIREMOCK_TRUSTSTORE_PASSWORD="password" \
+    WIREMOCK_RECORD_MAPPINGS="false" \
+    WIREMOCK_REQUEST_JOURNAL="false" \
+    WIREMOCK_BROWSER_PROXING="false" \
+    WIREMOCK_VERBOSE="false" \
+    WIREMOCK_VERSION="2.27.0"
 
 # Update 'openssl' package
-# Fix "No Server ALPNProcessors" when using https
 # Grab su-exec for easy step-down from root and bash
 RUN apk add --update openssl && \
-#   apk add --update libc6-compat && \
-#   ln -s /lib/libc.musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2 && \
     apk add --no-cache 'su-exec>=0.2' bash
 
 # Grab wiremock standalone jar
