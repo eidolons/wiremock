@@ -50,4 +50,3 @@ EXPOSE 8080 8443
 
 # Container execution definition
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
-CMD java ${JAVA_OPTS} -cp /var/wiremock/lib/*:/var/wiremock/extensions/* com.github.tomakehurst.wiremock.standalone.WireMockServerRunner ${WIREMOCK_OPTS}
