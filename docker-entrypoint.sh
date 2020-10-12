@@ -38,8 +38,10 @@ if [ "${1}" = "" ]; then
         WIREMOCK_OPTS="${WIREMOCK_OPTS} --record-mappings"
     elif [ "${WIREMOCK_REQUEST_JOURNAL}" != "true" ]; then
         WIREMOCK_OPTS="${WIREMOCK_OPTS} --no-request-journal"
-    elif [ "${WIREMOCK_BROWSER_PROXING}" = "true" ]; then
-        WIREMOCK_OPTS="${WIREMOCK_OPTS} --enable-browser-proxying"
+    fi
+    # Check proxy request configuration.
+    if [ "${WIREMOCK_BROWSER_PROXING}" = "true" ]; then
+        WIREMOCK_OPTS="${WIREMOCK_OPTS} --enable-browser-proxying --proxy-all --preserve-host-header"
     fi
     # Check if you want to enable verbose logging.
     if [ "${WIREMOCK_VERBOSE}" = "true" ]; then
