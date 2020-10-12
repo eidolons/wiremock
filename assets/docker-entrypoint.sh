@@ -21,7 +21,7 @@ if [ "${1}" = "" ]; then
         if [ ! "${WIREMOCK_KEYSTORE}" = "" ] && [ -f "${WIREMOCK_HOME}/conf/${WIREMOCK_KEYSTORE}" ]; then
             WIREMOCK_OPTS="${WIREMOCK_OPTS} --https-keystore ${WIREMOCK_HOME}/conf/${WIREMOCK_KEYSTORE}"
             if [ ! "${WIREMOCK_KEYSTORE_PASSWORD}" = "" ]; then
-                WIREMOCK_OPTS="${WIREMOCK_OPTS} --keystore-type pkcs12 --keystore-password ${WIREMOCK_KEYSTORE_PASSWORD}"
+                WIREMOCK_OPTS="${WIREMOCK_OPTS} --keystore-type pkcs12 --keystore-password ${WIREMOCK_KEYSTORE_PASSWORD} --key-manager-password ${WIREMOCK_KEYSTORE_PASSWORD}"
             fi
         fi
         # Check the truststore configuration.
